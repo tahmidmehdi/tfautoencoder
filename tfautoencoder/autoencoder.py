@@ -168,8 +168,8 @@ class TFAutoEncoder(object):
             self._optimize = optimizer(lr).minimize(loss)
 
             #variables summary
-            tf.scalar_summary("l2_loss", l2_loss)
-            tf.scalar_summary("loss", loss)
+            tf.summary.scalar("l2_loss", l2_loss)
+            tf.summary.scalar("loss", loss)
             self._summ = tf.merge_all_summaries()
 
             #create session
