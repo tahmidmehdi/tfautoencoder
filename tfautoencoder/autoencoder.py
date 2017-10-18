@@ -170,14 +170,14 @@ class TFAutoEncoder(object):
             #variables summary
             tf.summary.scalar("l2_loss", l2_loss)
             tf.summary.scalar("loss", loss)
-            self._summ = tf.merge_all_summaries()
+            self._summ = tf.summary.merge_all()
 
             #create session
             self.session = tf.Session(config=tf.ConfigProto(
                                     inter_op_parallelism_threads=self.num_cores,
                                     intra_op_parallelism_threads=self.num_cores))
             #create initializer
-            self._initializer = tf.initialize_all_variables()
+            self._initializer = tf.global_variables_initializer()
             self.session.run(self._initializer)
             self._initialized = True
 
